@@ -1,0 +1,140 @@
+//列的设置
+.make-grid-columns() {
+  
+  .col(@index) { 
+    @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+    //@item:".col-xs-1, .col-sm-1, .col-md-1, .col-lg-1"
+    .col((@index + 1), @item);
+    //.col(2,".col-xs-1, .col-sm-1, .col-md-1, .col-lg-1")
+  }
+  //when less 中判定语句if
+  .col(@index, @list) when (@index =< @grid-columns) { 
+    @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+    //@item:".col-xs-2, .col-sm-2, .col-md-2, .col-lg-2"
+    
+    //@item:".col-xs-3, .col-sm-3, .col-md-3, .col-lg-3"
+    .col((@index + 1), ~"@{list}, @{item}");
+    //.col(3,'.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2')
+ 
+    //.col(4,'.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3')
+  
+  
+  }
+   
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      position: relative;
+      // Prevent columns from collapsing when empty
+      min-height: 1px;
+      // Inner gutter via padding
+      padding-left:  ceil((@grid-gutter-width / 2));
+      padding-right: floor((@grid-gutter-width / 2));
+    }
+  }
+  //执行混合
+  .col(1); 
+}
+
+
+// 屏幕区域一些样式
+//.make-grid(xs);
+.make-grid(@class) {
+    //调用混合
+    //浮动
+  .float-grid-columns(@class);
+  //宽度
+  .loop-grid-columns(@grid-columns, @class, width);
+  //pull 列排序  right
+  .loop-grid-columns(@grid-columns, @class, pull);
+  //push 列排序 left
+  .loop-grid-columns(@grid-columns, @class, push);
+  //列偏移
+  .loop-grid-columns(@grid-columns, @class, offset);
+}
+
+.loop-grid-columns(@index, @class, @type) when (@index >= 0) {
+  .calc-grid-column(@index, @class, @type);
+  // next iteration
+  .loop-grid-columns((@index - 1), @class, @type);
+}
+
+//列偏移
+.calc-grid-column(@index, @class, @type) when (@type = offset) {
+    //.col-xs-offset-12{margin-left:100%}
+    //.col-xs-offset-11{margin-left:11/12}
+    //.col-xs-offset-1{margin-left:1/12}
+    //.col-xs-offset-0{margin-left:0}
+  .col-@{class}-offset-@{index} {
+    margin-left: percentage((@index / @grid-columns));
+  }
+}
+
+
+
+
+//push
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index > 0) {
+    //.col-xs-push-12{left:100%}
+    //.col-xs-push-11{left:11/12}
+    //.col-xs-push-1{left:1/12}
+  .col-@{class}-push-@{index} {
+    left: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index = 0) {
+    //.col-xs-push-0 {left: auto;}
+  .col-@{class}-push-0 {
+    left: auto;
+  }
+}
+//pull 
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
+    //.col-xs-pull-12{right:100%}
+    //.col-xs-pull-11{right:11/12}
+    //.col-xs-pull-1{right:1/12}
+  .col-@{class}-pull-@{index} {
+    right: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index = 0) {
+    //.col-xs--pull-0 {right: auto;}
+  .col-@{class}-pull-0 {
+    right: auto;
+  }
+}
+
+// 宽度
+.calc-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+    //.col-xs-12{width:100%}
+    //.col-xs-11{width:11/12}
+    //.col-xs-1{width:1/12}
+  .col-@{class}-@{index} {
+    width: percentage((@index / @grid-columns));
+  }
+}
+
+//浮动
+//.float-grid-columns(xs);
+.float-grid-columns(@class) {
+    
+  .col(@index) { 
+    @item: ~".col-@{class}-@{index}";
+    //@item:".col-xs-1"
+    .col((@index + 1), @item);
+    //.col(2, ".col-xs-1");
+  }
+  
+  .col(@index, @list) when (@index =< @grid-columns) { // general
+    @item: ~".col-@{class}-@{index}";
+    //@item:'.col-xs-2'
+    .col((@index + 1), ~"@{list}, @{item}");
+    //.col(3, ".col-xs-1, .col-xs-2");
+  }
+  
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      float: left;
+    }
+  }
+  .col(1); 
+}

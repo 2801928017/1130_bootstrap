@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+      /*
+        响应式布局概念：
+          在不同的设备（不同的显示屏大小、分辨率）上，同一个网页根据设备特性呈现不同的布局样式。
+        思考：
+          1.获取设备的相关信息。
+          2.根据屏幕特性，划分几个区域（手机移动设备、768、平板电脑、1024、电脑屏幕）。
+          3.给需要变化的结构编写多套css样式。
+        写法：@media screen and (min-width: 768px)
+      */
+      * {
+          margin: 0;
+          padding: 0;
+      }
+      /*媒体选择器，媒体查询*/
+
+      /*盒子默认样式*/
+      #box{
+        width: 200px;
+        height: 200px;
+      }
+      
+      /* 小于等于 768px*/
+      @media screen and (max-width: 768px){
+        #box{
+          background: deeppink;
+        }
+      }
+      
+      /*大于768，小于1024*/
+      @media screen and (min-width: 768px) and (max-width: 1024px){
+        #box{
+          background: gray;
+        }
+      }
+      
+      /*大于1024*/
+      @media screen and (min-width: 1024px){
+          #box{
+            background: yellowgreen;
+          }
+      }
+      
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+<script type="text/javascript">
+    //窗口大小改变时候触发
+    window.onresize = function () {
+        console.log(document.documentElement.clientWidth);
+    }
+</script>
+</html>

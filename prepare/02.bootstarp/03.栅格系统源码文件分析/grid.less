@@ -1,0 +1,60 @@
+//固定容器
+.container {
+    //调用混合
+  .container-fixed();
+
+    //@media (min-width: 768px)
+  @media (min-width: @screen-sm-min) {
+      //width:750px
+    width: @container-sm;
+  }
+  //@media (min-width: 992px)
+  @media (min-width: @screen-md-min) {
+      //width:970px
+    width: @container-md;
+  }
+  //@media (min-width: 1200px)
+  @media (min-width: @screen-lg-min) {
+      //width:1170px
+    width: @container-lg;
+  }
+}
+
+//流体容器
+.container-fluid {
+    //调用混合
+  .container-fixed();
+}
+
+
+//行
+.row {
+    //调用混合
+  .make-row();
+}
+
+
+//列
+.make-grid-columns();
+
+
+
+//超小屏幕 小于768px;
+.make-grid(xs);
+
+
+//小屏幕768px;
+@media (min-width: @screen-sm-min) {
+  .make-grid(sm);
+}
+
+//中等屏幕 992px
+@media (min-width: @screen-md-min) {
+  .make-grid(md);
+}
+
+
+//大屏幕  1200px
+@media (min-width: @screen-lg-min) {
+  .make-grid(lg);
+}

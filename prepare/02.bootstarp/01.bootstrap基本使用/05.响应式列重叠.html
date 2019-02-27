@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,
+         maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>Bootstrap 101 Template</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    	.myrow-1{
+    		background: pink;
+    	}
+    	.myrow-2{
+    		background: yellowgreen;
+    	}
+    .myrow-3{
+       background: orange;
+     }
+    .myrow-4{
+      background: gray;
+    }
+    
+    	.myborder-css{
+    		border: 1px solid #000000;
+    	}
+    </style>
+  </head>
+  <body>
+  
+    <!--响应式列重叠-->
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 myrow-1">
+        11.col-xs-6 .col-sm-311.col-xs-6 .col-sm-3
+        11.col-xs-6 .col-sm-311.col-xs-6 .col-sm-3
+        11.col-xs-6 .col-sm-311.col-xs-6 .col-sm-3
+        11.col-xs-6 .col-sm-311.col-xs-6 .col-sm-3
+      </div>
+      <div class="col-xs-6 col-sm-3 myrow-2">22.col-xs-6 .col-sm-3</div>
+    
+      <!-- Add the extra clearfix for only the required viewport -->
+      <div class="clearfix visible-xs-block"></div>
+    
+      <div class="col-xs-6 col-sm-3 myrow-3">33.col-xs-6 .col-sm-3</div>
+      <div class="col-xs-6 col-sm-3 myrow-4" >44.col-xs-6 .col-sm-3</div>
+    </div>
+    
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+  </body>
+</html>

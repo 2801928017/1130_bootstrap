@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+      /*
+        注意：
+          1.编写媒体选择器时，注意顺序的问题,要把媒体选择器写在正常样式之后。
+          2.媒体查询是CSS3提出来的，要处理老设备兼容性的问题。
+      */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+/*        #box {
+            width: 200px;
+            height: 200px;
+            background: deeppink;
+        }*/
+
+        @media screen and (min-width: 768px){
+            #box {
+                width: 200px;
+                height: 200px;
+                background: yellowgreen;
+            }
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: deeppink;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        var box = document.getElementById('box');
+    };
+
+</script>
+</html>

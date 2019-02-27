@@ -1,0 +1,22 @@
+#box {
+  width: 200px;
+  height: 200px;
+  /* 小于等于 768px*/
+  /*大于768，小于1024*/
+  /*大于1024*/
+}
+@media screen and (max-width: 768px) {
+  #box {
+    background: deeppink;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  #box {
+    background: gray;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #box {
+    background: yellowgreen;
+  }
+}
