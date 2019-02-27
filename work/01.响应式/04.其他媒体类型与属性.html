@@ -3,12 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,
+       maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <style type="text/css">
-    
+      /*
+        1.媒体查询：可以查询媒体类型、媒体属性，举例：@media screen and (width:768){特殊样式}
+        2.媒体类型:screen print ....
+        3.媒体属性：宽高、分辨率、dpr....
+        4.媒体选择器：css2最开始的时候所使用的，后期在css3中升级为媒体查询
+      */
+      #box{
+        width: 200px;
+        height: 200px;
+        background-color: orange;
+      }
+      
+      @media screen and (orientation:landscape){
+        #box{
+          border: 3px solid black;
+        }
+      }
     </style>
 </head>
 <body>
 <div id="box"></div>
+<script>
+  window.onresize = function () {
+    console.log(document.documentElement.clientWidth)
+  }
+</script>
 </body>
 
 </html>

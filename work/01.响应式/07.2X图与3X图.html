@@ -13,6 +13,19 @@
     #box{
       width: 30px;
       height: 18px;
+      background-repeat: no-repeat;
+      background-size: 30px 18px;
+      background-image: url("./img/brand@2x.png");
+    }
+    @media screen and (-webkit-device-pixel-ratio:2){
+      #box{
+        background-image: url("./img/brand@2x.png");
+      }
+    }
+    @media screen and (-webkit-device-pixel-ratio:3){
+      #box{
+        background-image: url("./img/brand@3x.png");
+      }
     }
   </style>
 </head>
