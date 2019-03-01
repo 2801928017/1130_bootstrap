@@ -1,20 +1,20 @@
-// Grid system
-//
-// Generate semantic grid columns with these mixins.
-
-// Centered container element
+//流体和固定容器公共样式
+//.container-fixed(@gutter: 30px)
 .container-fixed(@gutter: @grid-gutter-width) {
   margin-right: auto;
   margin-left: auto;
-  padding-left:  floor((@gutter / 2));
-  padding-right: ceil((@gutter / 2));
+  padding-left:  floor((@gutter / 2));//向下取整，15px
+  padding-right: ceil((@gutter / 2));//向上取整，15px
   &:extend(.clearfix all);
 }
 
-// Creates a wrapper for a series of columns
+//行
+//.make-row(@gutter: 30px)
 .make-row(@gutter: @grid-gutter-width) {
-  margin-left:  ceil((@gutter / -2));
-  margin-right: floor((@gutter / -2));
+    //行自带一个负的margin，目的是抵消掉外侧容器的padding
+  margin-left:  ceil((@gutter / -2));//-15px
+  margin-right: floor((@gutter / -2));//-15px
+  //清除浮动
   &:extend(.clearfix all);
 }
 

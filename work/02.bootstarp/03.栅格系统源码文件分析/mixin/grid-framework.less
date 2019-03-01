@@ -1,50 +1,80 @@
-// Framework grid generation
-//
-// Used only by Bootstrap to generate the correct number of grid classes given
-// any value of `@grid-columns`.
-
+//制造列
 .make-grid-columns() {
-  // Common styles for all sizes of grid columns, widths 1-12
-  .col(@index) { // initial
+    
+  //.col(1)
+  .col(@index) {
     @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+    //@item: ".col-xs-1, .col-sm-1, .col-md-1, .col-lg-1";
     .col((@index + 1), @item);
+    //.col(2,".col-xs-1, .col-sm-1, .col-md-1, .col-lg-1")
   }
-  .col(@index, @list) when (@index =< @grid-columns) { // general; "=<" isn't a typo
+  
+  //.col(2, ".col-xs-1, .col-sm-1, .col-md-1, .col-lg-1") when (@index =< @grid-columns)
+  //.col(3, ".col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2")
+  .col(@index, @list) when (@index =< @grid-columns) {
+    //@item: ".col-xs-2, .col-sm-2, .col-md-2, .col-lg-2";  
+    //@item: ".col-xs-3, .col-sm-3, .col-md-3, .col-lg-3"
     @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+    //col(3,".col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2")
+    //col(4,".col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3")
     .col((@index + 1), ~"@{list}, @{item}");
   }
-  .col(@index, @list) when (@index > @grid-columns) { // terminal
+  
+  .col(@index, @list) when (@index > @grid-columns) {
+    // .col-xs-1 ,col-sm-1 ...... ocol-log-12
     @{list} {
       position: relative;
-      // Prevent columns from collapsing when empty
       min-height: 1px;
-      // Inner gutter via padding
-      padding-left:  ceil((@grid-gutter-width / 2));
+      padding-left:  ceil((@grid-gutter-width / 2));//15px
       padding-right: floor((@grid-gutter-width / 2));
     }
   }
-  .col(1); // kickstart it
+  .col(1);
 }
 
+
+//.float-grid-columns(xs) 
 .float-grid-columns(@class) {
-  .col(@index) { // initial
+  //.col(1) 
+  .col(@index) { 
+     //@item: ~".col-xs-1";
     @item: ~".col-@{class}-@{index}";
+    //.col((2, .col-xs-1)
     .col((@index + 1), @item);
   }
-  .col(@index, @list) when (@index =< @grid-columns) { // general
+  
+  //col(2,.col-xs-1)
+  .col(@index, @list) when (@index =< @grid-columns) {
+      //@item: ".col-xs-2"
     @item: ~".col-@{class}-@{index}";
+    //.col((3, ".col-xs-1, .col-xs-2");
+    //.col((12, ".col-xs-1, .col-xs-2,..... .col-xs-12")
     .col((@index + 1), ~"@{list}, @{item}");
   }
+  
   .col(@index, @list) when (@index > @grid-columns) { // terminal
     @{list} {
       float: left;
     }
   }
-  .col(1); // kickstart it
+  .col(1); 
 }
 
+
+
+
+
 .calc-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+    //.col-xs-12 
+    //.col-xs-11
+    //...
+    //...
+    //col-xs-1
   .col-@{class}-@{index} {
+      //width: 100%
+      //width: 11/12*100%
+      //...
+      ////width: 1/12*100%
     width: percentage((@index / @grid-columns));
   }
 }
@@ -74,17 +104,23 @@
   }
 }
 
-// Basic looping in LESS
+// .loop-grid-columns(12, xs, width) when (12 >= 0)
 .loop-grid-columns(@index, @class, @type) when (@index >= 0) {
+    //.calc-grid-column(12, xs, width)
+    //.calc-grid-column(11, xs, width)
   .calc-grid-column(@index, @class, @type);
-  // next iteration
+  //.loop-grid-columns(11, xs, width);
   .loop-grid-columns((@index - 1), @class, @type);
 }
 
-// Create grid for specific class
+//为特定列设置样式
+//.make-grid(xs)
 .make-grid(@class) {
+    //.float-grid-columns(xs)-----为所有的xs列增加浮动样式，目的是：所有列横向排列;
   .float-grid-columns(@class);
+  //.loop-grid-columns(12, xs, width);
   .loop-grid-columns(@grid-columns, @class, width);
+  
   .loop-grid-columns(@grid-columns, @class, pull);
   .loop-grid-columns(@grid-columns, @class, push);
   .loop-grid-columns(@grid-columns, @class, offset);

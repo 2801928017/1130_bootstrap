@@ -1,84 +1,56 @@
-//
-// Grid system
-// --------------------------------------------------
-
-
-// Container widths
-//
-// Set the container width, and override it for fixed navbars in media queries.
-
+//固定容器样式
 .container {
+    //流体和固定容器公共样式
   .container-fixed();
 
+    //@media (min-width: 768px)
   @media (min-width: @screen-sm-min) {
+      //width: 750px;
     width: @container-sm;
   }
+  //@media (min-width: 992px)
   @media (min-width: @screen-md-min) {
+      //width: 970px
     width: @container-md;
   }
+  //@media (min-width: 1200px)
   @media (min-width: @screen-lg-min) {
+      //width: 1170px;
     width: @container-lg;
   }
 }
 
 
-// Fluid container
-//
-// Utilizes the mixin meant for fixed width containers, but without any defined
-// width for fluid, full width layouts.
-
+//流体容器样式
 .container-fluid {
+    //流体和固定容器公共样式
   .container-fixed();
 }
 
 
-// Row
-//
-// Rows contain and clear the floats of your columns.
-
+//行样式
 .row {
   .make-row();
 }
 
 
-// Columns
-//
-// Common styles for small and large grid columns
-
+//所有列的公共样式----第一步
 .make-grid-columns();
 
-
-// Extra small grid
-//
-// Columns, offsets, pushes, and pulls for extra small devices like
-// smartphones.
-
+//为xs列设置样式
 .make-grid(xs);
 
-
-// Small grid
-//
-// Columns, offsets, pushes, and pulls for the small device range, from phones
-// to tablets.
-
+//为sm列设置样式
 @media (min-width: @screen-sm-min) {
   .make-grid(sm);
 }
 
-
-// Medium grid
-//
-// Columns, offsets, pushes, and pulls for the desktop device range.
-
+//为md列设置样式
 @media (min-width: @screen-md-min) {
   .make-grid(md);
 }
 
-
-// Large grid
-//
-// Columns, offsets, pushes, and pulls for the large desktop device range.
-
+//为lg列设置样式
 @media (min-width: @screen-lg-min) {
   .make-grid(lg);
 }
