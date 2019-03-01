@@ -88,8 +88,14 @@
     left: auto;
   }
 }
+//.calc-grid-column(12, xs, pull)
+//.calc-grid-column(11, xs, pull)
 .calc-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
+    //.col-xs-pull-12
+    //.col-xs-pull-11
   .col-@{class}-pull-@{index} {
+    //right: 100%
+    //right:(11/12)%
     right: percentage((@index / @grid-columns));
   }
 }
@@ -98,16 +104,24 @@
     right: auto;
   }
 }
+//.calc-grid-column(12, xs, offset)
 .calc-grid-column(@index, @class, @type) when (@type = offset) {
+    //.col-xs-offset-12
+    //.col-xs-offset-11
   .col-@{class}-offset-@{index} {
+    //margin-left: 100%;
+    //margin-left: (11/12)*100%;
     margin-left: percentage((@index / @grid-columns));
   }
 }
 
 // .loop-grid-columns(12, xs, width) when (12 >= 0)
-.loop-grid-columns(@index, @class, @type) when (@index >= 0) {
+// .loop-grid-columns(11, xs, push) when (12 >= 0)
+// ..loop-grid-columns(12, xs, offset)
+c when (@index >= 0) {
     //.calc-grid-column(12, xs, width)
     //.calc-grid-column(11, xs, width)
+    //.calc-grid-column(12,xs,offset)
   .calc-grid-column(@index, @class, @type);
   //.loop-grid-columns(11, xs, width);
   .loop-grid-columns((@index - 1), @class, @type);
@@ -116,12 +130,14 @@
 //为特定列设置样式
 //.make-grid(xs)
 .make-grid(@class) {
-    //.float-grid-columns(xs)-----为所有的xs列增加浮动样式，目的是：所有列横向排列;
+  //.float-grid-columns(xs)-----为所有的xs列增加浮动样式，目的是：所有列横向排列;
   .float-grid-columns(@class);
   //.loop-grid-columns(12, xs, width);
   .loop-grid-columns(@grid-columns, @class, width);
-  
+  //.loop-grid-columns(12, xs, pull)
   .loop-grid-columns(@grid-columns, @class, pull);
+  //.loop-grid-columns(12, xs, push);
   .loop-grid-columns(@grid-columns, @class, push);
+  //.loop-grid-columns(12, xs, offset);
   .loop-grid-columns(@grid-columns, @class, offset);
 }

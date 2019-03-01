@@ -1,4 +1,8 @@
-//容器公共样式
+// Grid system
+//
+// Generate semantic grid columns with these mixins.
+
+// Centered container element
 .container-fixed(@gutter: @grid-gutter-width) {
   margin-right: auto;
   margin-left: auto;
@@ -7,14 +11,12 @@
   .clearfix()
 }
 
-
-// 行设置
+// Creates a wrapper for a series of columns
 .make-row(@gutter: @grid-gutter-width) {
   margin-left:  ceil((@gutter / -2));
   margin-right: floor((@gutter / -2));
   .clearfix()
 }
-
 .clearfix() {
   &:before,
   &:after {
@@ -25,6 +27,4 @@
     clear: both;
   }
 }
-
-
 
